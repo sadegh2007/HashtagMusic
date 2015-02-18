@@ -201,22 +201,28 @@ namespace Core
 
         public async static Task<UserDef> GetUserData()
         {
-            var jsonSer = new DataContractJsonSerializer(typeof(UserDef));
-            var folder = await Package.Current.InstalledLocation.GetFolderAsync("User");
-            var myStream = await folder.OpenStreamForReadAsync("userdata.json");
-            return (UserDef)jsonSer.ReadObject(myStream);
+            try
+            {
+                var jsonSer = new DataContractJsonSerializer(typeof(UserDef));
+                var folder = await Package.Current.InstalledLocation.GetFolderAsync("User");
+                var myStream = await folder.OpenStreamForReadAsync("userdata.json");
+                return (UserDef)jsonSer.ReadObject(myStream);
+            }
+            catch (Exception) { return null; }
         }
 
         public async static Task SaveUserData(UserDef data)
         {
-            var ser = new DataContractJsonSerializer(typeof(UserDef));
-            var folder = await Package.Current.InstalledLocation.CreateFolderAsync("User", CreationCollisionOption.OpenIfExists);
-            using (var stream = await folder.OpenStreamForWriteAsync(
-                "userdata.json",
-                CreationCollisionOption.ReplaceExisting))
-            {
-                ser.WriteObject(stream, data);
-            }
+            try {
+                var ser = new DataContractJsonSerializer(typeof(UserDef));
+                var folder = await Package.Current.InstalledLocation.CreateFolderAsync("User", CreationCollisionOption.OpenIfExists);
+                using (var stream = await folder.OpenStreamForWriteAsync(
+                    "userdata.json",
+                    CreationCollisionOption.ReplaceExisting))
+                {
+                    ser.WriteObject(stream, data);
+                }
+            } catch (Exception) { }
         }
 
         public static StreamAddress StreamAd { get; set; }

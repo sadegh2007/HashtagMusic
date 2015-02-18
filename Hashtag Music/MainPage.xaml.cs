@@ -126,7 +126,7 @@ namespace Hashtag_Music
             catch (Exception) { }
         }
 
-        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {

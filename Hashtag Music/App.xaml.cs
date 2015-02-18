@@ -118,13 +118,17 @@ namespace Hashtag_Music
             Frame rootFrame = CreateRootFrame();
             RestoreStatus(e.PreviousExecutionState);
 
-            Core.Settings.CurrentPlaying = await Core.Settings.GetLastPlayed();
-            Core.Settings.CurrentSongId = Core.Settings.CurrentPlaying.Id;
+            try
+            {
+                Core.Settings.CurrentPlaying = await Core.Settings.GetLastPlayed();
+                Core.Settings.CurrentSongId = Core.Settings.CurrentPlaying.Id;
+            }
+            catch (Exception) { }
 
-                if (Core.Settings.Login == false)
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                else
-                    rootFrame.Navigate(typeof(LoginPage), "Relogin");
+            if (Core.Settings.Login == false)
+                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+            else
+                rootFrame.Navigate(typeof(LoginPage), "Relogin");
             
             // Ensure the current window is active
             Window.Current.Activate();
@@ -174,8 +178,12 @@ namespace Hashtag_Music
                 var searchText = vcArgs.Result.Text;
                 searchText = searchText.ToLower().Replace("search ", string.Empty);
 
-                Core.Settings.CurrentPlaying = await Core.Settings.GetLastPlayed();
-                Core.Settings.CurrentSongId = Core.Settings.CurrentPlaying.Id;
+                try
+                {
+                    Core.Settings.CurrentPlaying = await Core.Settings.GetLastPlayed();
+                    Core.Settings.CurrentSongId = Core.Settings.CurrentPlaying.Id;
+                }
+                catch (Exception) { }
 
                 switch (voiceCommandName)
                 {
