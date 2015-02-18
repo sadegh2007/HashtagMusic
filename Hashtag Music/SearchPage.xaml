@@ -1,0 +1,111 @@
+﻿<Page
+    x:Class="Hashtag_Music.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource backgr}">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="lstItems">
+            <GridView 
+                    Background="{StaticResource listBackground}"
+                    x:Name="lstVideo"
+                    ItemsSource="{Binding}"
+                    IsItemClickEnabled="True"
+                    ItemClick="lstVideo_ItemClick"
+                    ItemTemplate="{StaticResource videoItem}" PointerEntered="lstVideo_PointerEntered">
+                <GridView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition/>
+                        <PopupThemeTransition/>
+                    </TransitionCollection>
+                </GridView.ItemContainerTransitions>
+            </GridView>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="1" Margin="0,-8,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Pivot x:Name="pivot" Margin="0" SelectionChanged="pivot_SelectionChanged">
+                <PivotItem x:Name="p1" Margin="0" ContentTemplate="{StaticResource lstItems}"/>
+                <PivotItem x:Name="p2" Margin="0" ContentTemplate="{StaticResource lstItems}"/>
+                <PivotItem x:Name="p3" Margin="0" ContentTemplate="{StaticResource lstItems}"/>
+                <PivotItem x:Name="p4" Margin="0">
+                    <ListView 
+                    Background="{StaticResource listBackground}"
+                    x:Name="artistItem"
+                    Grid.Row="1"
+                    PointerEntered="lstVideo_PointerEntered"
+                    ItemTemplate="{StaticResource ArtistItem}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+            </Pivot>
+            
+            <Grid Grid.Row="2" Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="gr1" Tag="1" Grid.Column="0" Tapped="searchType_Tapped" Background="{StaticResource TitlebarColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <SymbolIcon Margin="5" Symbol="SlideShow" Foreground="{StaticResource lightForground}"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="Videos" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource lightForground}"/>
+                </Grid>
+                <Grid x:Name="gr2" Tag="2" Grid.Column="1" Tapped="searchType_Tapped">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <SymbolIcon Margin="5" Symbol="MusicInfo" Foreground="{StaticResource darkForground}"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="MP3s" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+                <Grid x:Name="gr3" Tag="3" Grid.Column="2" Tapped="searchType_Tapped">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <SymbolIcon Margin="5" Symbol="Memo" Foreground="{StaticResource darkForground}"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="Podcast" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+                <Grid x:Name="gr4" Tag="4" Grid.Column="3" Tapped="searchType_Tapped">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <SymbolIcon Margin="5" Symbol="Contact" Foreground="{StaticResource darkForground}"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="Artist" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <local:MenuPanel Grid.Row="1" x:Name="menuPanel" Margin="0,-8,0,0" Visibility="Collapsed" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5"/>
+        <local:HeaderPanel x:Name="headerPanel"/>
+
+    </Grid>
+    
+</Page>

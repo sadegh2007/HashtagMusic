@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en-US">
+    <CommandPrefix>#Music</CommandPrefix>
+    <Example>search</Example>
+
+    <Command Name="Search">
+      <Example>search video by title</Example>
+      <ListenFor>Search</ListenFor>
+      <Feedback>Now i'm searching on #Music... </Feedback>
+      <Navigate Target="SearchPage.xaml"/>
+    </Command>
+
+  </CommandSet>
+</VoiceCommands>

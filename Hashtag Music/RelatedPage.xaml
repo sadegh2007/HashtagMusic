@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Hashtag_Music.RelatedPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource backgr}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListView
+                Background="#66DCDCDC"
+                Margin="0,-8,0,0"
+                x:Name="lstVideo"
+                Grid.Row="2"
+                IsItemClickEnabled="True"
+                ItemClick="lstVideo_ItemClick"
+                ItemTemplate="{StaticResource RelatedMP3Item}" 
+            PointerEntered="lstVideo_PointerEntered">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <local:HeaderPanel Grid.Row="0" x:Name="headerPanel" VerticalAlignment="Top"/>
+        <local:MenuPanel x:Name="menuPanel" Grid.Row="1" Visibility="Collapsed" Margin="0,-8,0,0"/>
+
+    </Grid>
+    
+</Page>

@@ -1,0 +1,92 @@
+﻿<Page
+    x:Class="Hashtag_Music.PlaylistPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource backgr}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Pivot x:Name="pivot" Grid.Row="0" Margin="0,-8,0,0" SelectionChanged="Pivot_SelectionChanged">
+                
+                <PivotItem Margin="0">
+                    <ListView Margin="0,8"
+                        Background="{StaticResource listBackground}"
+                        x:Name="lstMusic"
+                        Grid.Row="1"
+                        IsItemClickEnabled="True"
+                        ItemClick="lstVideo_ItemClick"
+                        ItemTemplate="{StaticResource PlaylistItem}" 
+                        PointerEntered="lstMusic_PointerEntered">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+                
+                <PivotItem Margin="0">
+                    <ListView 
+                        Background="{StaticResource listBackground}"
+                        x:Name="lstVideo"
+                        Grid.Row="1"
+                        IsItemClickEnabled="True"
+                        PointerEntered="lstMusic_PointerEntered"
+                        ItemClick="lstVideo_ItemClick"
+                        ItemTemplate="{StaticResource PlaylistItem}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+                
+            </Pivot>
+
+            <Grid Grid.Row="1" Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="vi" Grid.Column="0" Tapped="searchType_Video" Background="{StaticResource TitlebarColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <SymbolIcon Symbol="SlideShow" Foreground="{StaticResource lightForground}"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="Videos" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource lightForground}"/>
+                </Grid>
+                <Grid x:Name="mp" Tag="2" Grid.Column="1" Tapped="searchType_MP3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <SymbolIcon Symbol="Audio" Foreground="{StaticResource darkForground}"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="MP3s" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+            </Grid>
+            
+        </Grid>
+        
+        <local:HeaderPanel Grid.Row="0" x:Name="headerPanel"/>
+        <local:MenuPanel Grid.Row="1" Margin="0,-8,0,0" x:Name="menuPanel" Visibility="Collapsed" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5"/>
+
+    </Grid>
+
+</Page>

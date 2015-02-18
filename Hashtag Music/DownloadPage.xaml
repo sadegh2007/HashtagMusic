@@ -1,0 +1,184 @@
+﻿<Page
+    x:Class="Hashtag_Music.DownloadPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource listBackground}">
+
+    <Page.Resources>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <Border 
+                    Background="{StaticResource VideoItemBackgroundColor}"
+                    CornerRadius="{StaticResource CornerRadius}"
+                    Margin="10,3"
+                    Holding="Border_Holding"
+                    FlowDirection="LeftToRight">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout x:Name="flayoutMenu">
+                        <MenuFlyoutItem Text="Pause" Click="pausefl_click"/>
+                        <MenuFlyoutItem Text="Resume" Click="resumefl_click"/>
+                        <MenuFlyoutItem Text="Cancel" Click="cancelfl_click"/>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <Grid Height="90" VerticalAlignment="Top" HorizontalAlignment="Stretch" FlowDirection="LeftToRight">
+                    <StackPanel x:Name="pnl" Grid.Column="1" Margin="5">
+                        <ProgressBar x:Name="pb" Height="5" Margin="10,20,10,0" Value="{Binding progressValue}" Foreground="#FF1CC0E5" BorderBrush="White" Background="{StaticResource medForground}"/>
+                        <Grid x:Name="gridSize">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" x:Name="txtFileSize" Text="{Binding FileSize}" FontSize="15" Margin="10,10,0,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="{StaticResource medForground}"/>
+                            <TextBlock Grid.Column="1" x:Name="txtDownloadedSize" Text="{Binding DownloadedSize}" FontSize="15" Margin="10,10,0,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="{StaticResource medForground}"/>
+                        </Grid>
+                        <Grid x:Name="gridStatus">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <SymbolIcon Grid.Column="0" HorizontalAlignment="Left" Margin="2" x:Name="statusIcon" Symbol="Pause" Foreground="{StaticResource medForground}"/>
+                            <TextBlock Grid.Column="1" x:Name="txtStatus" Margin="2" Text="Paused" FontSize="15" Foreground="{StaticResource medForground}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="downloadedItemTemplate">
+            <Border
+                    Background="{StaticResource VideoItemBackgroundColor}" 
+                    IsHoldingEnabled="True" Holding="downloadedFile_Holding"
+                    CornerRadius="{StaticResource CornerRadius}"
+                    FlowDirection="LeftToRight" Margin="10,3">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout x:Name="flayoutMenu">
+                        <MenuFlyoutItem Text="Delete" Click="deleteFile_click"/>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding FileNme}" Margin="0,3" FontSize="14" Foreground="{StaticResource darkForground}"/>
+                    <TextBlock Text="{Binding FileSize}" FontSize="16" Margin="0,3" Foreground="{StaticResource medForground}"/>
+                    <TextBlock Text="{Binding ModifiedDateTime}" FontSize="16" Margin="0,3" Foreground="{StaticResource medForground}"/>
+                    <TextBlock Text="{Binding Status}" Margin="0,3" FontFamily="{StaticResource font}" FontSize="16" Foreground="#FF96D6EA"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot" FlowDirection="RightToLeft">
+        <Pivot Grid.Row="0" SelectionChanged="Pivot_SelectionChanged">
+
+            <PivotItem Header="Downloading" Foreground="{StaticResource darkForground}" Margin="0,23,0,-0.5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0"
+                    x:Name="downloadList"
+                    ItemTemplate="{StaticResource ItemTemplate}"
+                    IsItemClickEnabled="False"
+                    ItemClick="downloadList_ItemClick">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition/>
+                                <EdgeUIThemeTransition Edge="Bottom"/>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                    </ListView>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Tapped="pauseAll_tapped">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Ellipse Width="60" Height="60" Fill="{StaticResource TitlebarColor}"/>
+                            <SymbolIcon Symbol="Pause" Foreground="{StaticResource listBackground}"/>
+                            <TextBlock Grid.Row="1" Margin="5" Foreground="{StaticResource darkForground}" Text="Pause All" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Tapped="playAll_tapped">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Ellipse Width="60" Height="60" Fill="{StaticResource TitlebarColor}"/>
+                            <SymbolIcon Symbol="Play" Foreground="{StaticResource listBackground}"/>
+                            <TextBlock Grid.Row="1" Margin="5" Foreground="{StaticResource darkForground}" Text="Resume All" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </PivotItem>
+
+            <PivotItem Header="Downloaded" Loaded="PivotItem_Loaded" Foreground="{StaticResource darkForground}" Margin="0,23,0,-0.5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <ListView
+                    x:Name="lstFinishedDownload"
+                    ItemTemplate="{StaticResource downloadedItemTemplate}"
+                    IsItemClickEnabled="True"
+                    ItemClick="finishedDownload_Click">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EdgeUIThemeTransition Edge="Bottom"/>
+                                <RepositionThemeTransition/>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                    </ListView>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Tapped="refreshList_Tapped" Width="105">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Ellipse Width="60" Height="60" Fill="{StaticResource TitlebarColor}"/>
+                            <SymbolIcon Symbol="Refresh" Foreground="{StaticResource listBackground}"/>
+                            <TextBlock Foreground="{StaticResource darkForground}" Grid.Row="1" Margin="5" Text="Refresh List" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </PivotItem>
+
+        </Pivot>
+        
+        <Grid x:Name="th" Background="{StaticResource darkForground}" Tapped="Help_Tapped" Visibility="Collapsed">
+
+            <TextBlock Text="توجه: امکان دارد نشان دادن درصد دانلود زمان زیادی به طول انجامد تا تغییر کنید لطفا از متوقف کردن و ادامه دانلود جهت تغییر در نشان دادن درصد دانلود استفاده نکنید
+به دلیل فیلتر بودن سایت اصلی سرعت دانلود پایین است و امکان دارد حجم فایل مدت زیاد روی صفر باقی بماند" TextWrapping="WrapWholeWords" FontFamily="Tahoma" FontSize="25" Margin="16" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+            
+        </Grid>
+        
+    </Grid>
+
+</Page>

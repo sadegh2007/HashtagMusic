@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="Hashtag_Music.VideoViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Theme/Ethereal iPhone.jpg"/>
+    </Page.Background>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Margin="0,-8,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.2*"/>
+            </Grid.RowDefinitions>
+            <MediaElement Grid.Row="0" x:Name="videoPlayer" AreTransportControlsEnabled="True" Stretch="Uniform" AutoPlay="False" RealTimePlayback="True"/>
+
+            <Grid Grid.Row="1" Margin="0,-8,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="1" Margin="16,7" Text="{Binding Artist}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="18"/>
+                    <TextBlock Grid.Row="2" Margin="16,7" Text="{Binding Song}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="16" />
+                    <TextBlock Grid.Row="3" Margin="16,7" Text="{Binding Views}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="16" />
+                    <Grid Margin="16,7" Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Tapped="Like_Tapped">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding Likes}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="16" />
+                            <SymbolIcon Grid.Row="1" Symbol="Like" />
+                        </Grid>
+                        <Grid Grid.Column="1" Tapped="dislike_Tapped">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding Dislikes}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="16" />
+                            <SymbolIcon Grid.Row="1" Symbol="Dislike" />
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+                <!-- Bottom bar -->
+                <Grid Grid.Row="4" VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Height="70" Tapped="LowQ_Download">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <SymbolIcon Symbol="Download" Foreground="{StaticResource lightForground}"/>
+                        <TextBlock Grid.Row="1" Margin="16,7" Text="Low" HorizontalAlignment="Center" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="15"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Height="70" Tapped="HighQ_Download">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <SymbolIcon Symbol="Download" Foreground="{StaticResource lightForground}"/>
+                        <TextBlock Grid.Row="1" Margin="16,7" Text="High" HorizontalAlignment="Center" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="15"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Height="70" Tapped="Related">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <SymbolIcon Symbol="ViewAll" Foreground="{StaticResource lightForground}"/>
+                        <TextBlock Grid.Row="1" Margin="10,7" Text="Related" HorizontalAlignment="Center" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="15"/>
+                    </Grid>
+                    <Grid Grid.Column="3" Height="70" Tapped="Share">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <SymbolIcon Symbol="ReShare" Foreground="{StaticResource lightForground}"/>
+                        <TextBlock Grid.Row="1" Margin="10,7" Text="Share" HorizontalAlignment="Center" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}" FontSize="15"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <local:HeaderPanel Grid.Row="0" x:Name="headerPanel" VerticalAlignment="Top"/>
+        <local:MenuPanel x:Name="menuPanel" Grid.Row="1" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5"/>
+
+        <Grid x:Name="loading" Grid.RowSpan="5" Background="#E5212121" Visibility="Collapsed">
+            <ProgressRing x:Name="pbLoading" VerticalAlignment="Center" Foreground="{StaticResource TitlebarColor}" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}"/>
+        </Grid>
+
+    </Grid>
+
+</Page>

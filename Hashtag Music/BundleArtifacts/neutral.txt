@@ -1,0 +1,4 @@
+MainPackage=D:\my Projects\Visual Studio\Hashtag Music\Hashtag Music\bin\Release\Hashtag Music_1.2.2.8_AnyCPU.appx
+SymbolPackage=D:\my Projects\Visual Studio\Hashtag Music\Hashtag Music\AppPackages\Hashtag Music_1.2.2.8_Test\Hashtag Music_1.2.2.8_AnyCPU.appxsym
+ResourcePack=D:\my Projects\Visual Studio\Hashtag Music\Hashtag Music\bin\Release\Hashtag Music_1.2.2.8_scale-100.appx
+ResourcePack=D:\my Projects\Visual Studio\Hashtag Music\Hashtag Music\bin\Release\Hashtag Music_1.2.2.8_scale-140.appx

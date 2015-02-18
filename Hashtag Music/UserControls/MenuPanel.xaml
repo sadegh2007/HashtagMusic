@@ -1,0 +1,170 @@
+﻿<UserControl
+    x:Class="Hashtag_Music.MenuPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="300" RenderTransformOrigin="0.5,0.5">
+    
+    <UserControl.Resources>
+        <Thickness x:Key="lf">0</Thickness>
+    </UserControl.Resources>
+    
+    <UserControl.RenderTransform>
+        <CompositeTransform x:Name="transform" TranslateX="-400"/>
+    </UserControl.RenderTransform>
+    <Grid Background="{StaticResource darkForground}">
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Enabled"> 
+            <StackPanel Width="250" Margin="0,10">
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Sign_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Remote"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" x:Name="txtSign" Text="SignIn" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                    
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                        
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Home_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Home"/>
+                        
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Home" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Video_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Video"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Videos" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Mp3s_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Audio"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="MP3s" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Radio_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="AttachCamera"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Radio" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Podcast_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Memo"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Podcasts" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="PlayList_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="List"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Playlists" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="MyPlayList_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Bullets"/>
+
+                        <TextBlock Grid.Column="1" Margin="16" Text="My Playlists" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Downloads_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Download"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Downloads" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" BorderBrush="{StaticResource medForground}" BorderThickness="0,0,0,1" Height="50" Tapped="Settings_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="Setting"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+                <Border Background="{StaticResource darkForground}" Height="50" Tapped="About_Tapped">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Margin="8" Foreground="{StaticResource lightForground}" Symbol="WebCam"/>
+
+                        <TextBlock Grid.Column="1" Margin="16,0" Text="About" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource primaryFont}" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Rectangle Margin="{StaticResource lf}" HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch" Fill="{StaticResource medForground}" />
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="Hashtag_Music.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource darkForground}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="#MUSIC BETA" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0" Foreground="{StaticResource lightForground}"/>
+            <TextBlock Text="settings" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" Foreground="{StaticResource lightForground}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <ToggleSwitch x:Name="highRadio" Header="High-Quality Radio" Foreground="{StaticResource lightForground}" Toggled="highRadio_Toggled"/>
+            <ToggleSwitch x:Name="hightVideo" Header="HD Videos" Foreground="{StaticResource lightForground}" Toggled="hightVideo_Toggled"/>
+
+            <ToggleSwitch x:Name="askdownie" IsOn="True" Header="Ask download with IE?" Foreground="{StaticResource lightForground}" Toggled="askdownie_Toggled"/>
+
+            <TextBlock Foreground="{StaticResource lightForground}" Text="Choose Server:" FontSize="19"/>
+            
+            <ComboBox x:Name="cbserver" SelectionChanged="cbserver_SelectionChanged"/>
+
+
+        </StackPanel>
+    </Grid>
+</Page>

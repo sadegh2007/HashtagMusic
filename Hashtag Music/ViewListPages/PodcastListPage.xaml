@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="Hashtag_Music.PodcastListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource backgr}">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="ItemList">
+            <GridView VerticalAlignment="Stretch" Margin="0,8" HorizontalAlignment="Stretch"
+                Background="{StaticResource listBackground}"
+                x:Name="lstVideo"
+                ItemsSource="{Binding}"
+                IsItemClickEnabled="True"
+                ItemClick="lstVideo_ItemClick"
+                ItemTemplate="{StaticResource videoItem}" PointerEntered="lstVideo_PointerEntered">
+            </GridView>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Margin="0,-8,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Pivot x:Name="pivot" SelectionChanged="pivot_SelectionChanged" SelectedIndex="3">
+                <PivotItem x:Name="p1" ContentTemplate="{StaticResource ItemList}" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <PivotItem x:Name="p2" ContentTemplate="{StaticResource ItemList}" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <PivotItem x:Name="p3" ContentTemplate="{StaticResource ItemList}" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <PivotItem x:Name="p4" ContentTemplate="{StaticResource ItemList}" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            </Pivot>
+
+            <Grid Grid.Row="1" Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="gr1" Tag="1" Grid.Column="0" Tapped="searchType_Tapped" Background="{StaticResource TitlebarColor}">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Text="Featured" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource lightForground}"/>
+                </Grid>
+                <Grid x:Name="gr2" Tag="2" Grid.Column="1" Tapped="searchType_Tapped">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Text="Popular" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+                <Grid x:Name="gr3" Tag="3" Grid.Column="2" Tapped="searchType_Tapped">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Text="Dance" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+                <Grid x:Name="gr4" Tag="4" Grid.Column="3" Tapped="searchType_Tapped">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Text="Shows" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{StaticResource primaryFont}" Foreground="{StaticResource darkForground}"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+        
+        <local:MenuPanel x:Name="menuPanel" Margin="0,-8,0,0" Grid.Row="1" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5"/>
+        <local:HeaderPanel x:Name="headerPanel" Grid.Row="0"/>
+        
+    </Grid>
+    
+</Page>

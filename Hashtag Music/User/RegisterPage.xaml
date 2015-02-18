@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="Hashtag_Music.RegisterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hashtag_Music"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Theme/Ethereal iPhone.jpg"/>
+        </Grid.Background>
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="SignUp" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <!--TODO: Content should be placed within the following grid-->
+            <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,30,19,0">
+                <TextBlock Text="First Name: " Style="{StaticResource BaseTextBlockStyle}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}"/>
+                <TextBox x:Name="txtFirstName"/>
+                <TextBlock Text="Last Name: " Style="{StaticResource BaseTextBlockStyle}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}"/>
+                <TextBox x:Name="txtLastName"/>
+                <TextBlock Text="UserName: " Style="{StaticResource BaseTextBlockStyle}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}"/>
+                <TextBox x:Name="txtUsername"/>
+                <TextBlock Text="Email: " Style="{StaticResource BaseTextBlockStyle}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}"/>
+                <TextBox x:Name="txtEmail"/>
+                <TextBlock Text="ReEnter Email: " Style="{StaticResource BaseTextBlockStyle}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}"/>
+                <TextBox x:Name="txtEmailConf"/>
+                <TextBlock Text="Password: " Style="{StaticResource BaseTextBlockStyle}" Foreground="{StaticResource lightForground}" FontFamily="{StaticResource primaryFont}"/>
+                <PasswordBox x:Name="txtPAss"/>
+
+                <Grid Visibility="Collapsed" Width="75" Tapped="Signup_Tapped">
+                    <Ellipse Width="70" Height="70" Fill="#FF952121"/>
+                    <SymbolIcon Foreground="{StaticResource lightForground}" Symbol="Edit"/>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+        
+
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource redishColor}">
+            <AppBarButton Icon="Accept" Label="accept" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+</Page>
